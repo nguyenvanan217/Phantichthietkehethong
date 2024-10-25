@@ -1,0 +1,51 @@
+.logo{
+    background-color: #003C71;
+}
+
+.back_group {
+    background-color: #003C71;
+}
+.text-link {
+    color:  #ffffff !important;
+    font-size: 25px !important;
+}
+.drop-css {
+    margin-left: 290px;
+}
+.IoPersonCircleOutline {
+    color: #fff;
+    font-size: 30px;
+}
+/* .right-container {
+    display: flex;
+    flex-direction: column;
+} */
+.MdPhoneInTalk {
+    color: #F79321;
+}
+.logo img{
+    height: 70px;
+    width: 100px;
+}
+.MdPhoneInTalk {
+    font-size: 25px;
+}
+.phone-css a {
+    font-size: 25px;
+    color: #F79321;
+    outline: none;
+    text-decoration: none;
+    font-weight: bolder;
+}  
+.time-css {
+    color: #fff;
+}
+.time-css span {
+    font-size: 12px;
+}
+.drop-css .dropdown-toggle::after {
+    color: white; 
+}
+.dropdown-margin {
+    margin-right: 30px; /* Thay đổi giá trị theo ý bạn */
+}

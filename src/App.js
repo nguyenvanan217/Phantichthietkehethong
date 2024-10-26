@@ -1,11 +1,10 @@
 import './App.css';
-import CustomNavbar from './component/Navbar/CustomNavbar';
+import KhachSanPage from './Page/KhachSanPage/KhachSanPage';
 
 function App() {
   return (
     <div className="App">
-      <CustomNavbar/>
-      
+      <KhachSanPage/>
     </div>
   );
 }

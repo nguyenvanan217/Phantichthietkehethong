@@ -1,51 +1,75 @@
-.logo{
-    background-color: #003C71;
+.logo {
+  background-color: #003c71;
 }
 
 .back_group {
-    background-color: #003C71;
+  background-color: #003c71;
 }
 .text-link {
-    color:  #ffffff !important;
-    font-size: 25px !important;
-}
-.drop-css {
-    margin-left: 290px;
+  color: #ffffff !important;
+  font-size: 20px !important;
 }
 .IoPersonCircleOutline {
-    color: #fff;
-    font-size: 30px;
+  color: #fff;
+  font-size: 30px;
 }
 /* .right-container {
     display: flex;
     flex-direction: column;
 } */
 .MdPhoneInTalk {
-    color: #F79321;
+  color: #f79321;
 }
-.logo img{
-    height: 70px;
-    width: 100px;
+.logo img {
+  height: 60px;
+  width: 110px;
 }
 .MdPhoneInTalk {
-    font-size: 25px;
+  font-size: 28px;
 }
 .phone-css a {
-    font-size: 25px;
-    color: #F79321;
-    outline: none;
-    text-decoration: none;
-    font-weight: bolder;
-}  
+  font-size: 25px;
+  color: #f79321;
+  outline: none;
+  text-decoration: none;
+  font-weight: bolder;
+}
 .time-css {
-    color: #fff;
+  color: #fff;
 }
 .time-css span {
-    font-size: 12px;
+  font-size: 12px;
 }
+/* .drop-css{
+    margin-left: 20px;
+} */
 .drop-css .dropdown-toggle::after {
-    color: white; 
+  color: white;
 }
 .dropdown-margin {
-    margin-right: 30px; /* Thay đổi giá trị theo ý bạn */
+  margin-right: 30px; /* Thay đổi giá trị theo ý bạn */
 }
+.register {
+  background-color: #26bed6;
+  color: #fff;
+  width: 100%;
+  border: none;
+  font-weight: bold;
+  border-radius: 5px;
+  height: 30px;
+}
+.register-now {
+  border-bottom: 1px solid #26bed6;
+  color: #26bed6;
+  padding-bottom: 3px;
+}
+
+.dropdown-item:active {
+  outline: none !important; /* Không có viền khi hover */
+  background-color: transparent !important; /* Đảm bảo không có màu nền */
+}
+.have-account {
+    color: #333333 !important ;
+}
+
+  

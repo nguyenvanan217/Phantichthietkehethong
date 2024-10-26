@@ -13,9 +13,10 @@ function KhachSanPage() {
         background={imgBanner} 
         placeholder="Bạn muốn đi đâu?"
         icon_btt_left={<CiLocationOn />}
-      />
+      />   
     </div>
   );
+  
 }
 
 export default KhachSanPage;

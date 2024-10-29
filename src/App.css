@@ -1,7 +1,10 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+body {
+    font-family: Helvetica, Arial, sans-serif;
 }
 /* Đặt màu sắc và độ rộng cho scrollbar */
 ::-webkit-scrollbar {

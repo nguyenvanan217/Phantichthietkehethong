@@ -1,7 +1,197 @@
 .banner-container {
-    height: 500px;
+    height: 625px;
     background-size: cover;
     background-position: center;
     color: white;
+    padding: 90px 0px 0px 70px;
 }
-  
+.banner-container h1 {
+    font-weight: bold;
+}
+.icon-big-input {
+    color: #333;
+    background-color: #fff;
+    height: 63px;
+    display: flex;
+    align-items: center;
+    font-size: 28px;
+    padding-left: 10px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+.icon-left,
+.icon-right {
+    color: #333;
+    background-color: #fff;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    font-size: 22px;
+    padding-left: 10px;
+}
+
+.big-input {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.big-input input {
+    border: none;
+    outline: none;
+    height: 63px;
+    width: 620px;
+    padding-left: 10px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    font-size: 20px;
+    caret-color: #26bed6;
+}
+.child-input-btt {
+    gap: 10px;
+}
+.child-input-left input {
+    border: none;
+    outline: none;
+    height: 55px;
+    width: 245px;
+    padding-left: 10px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+.child-input-right,
+.child-input-left {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.child-input-right input {
+    border: none;
+    outline: none;
+    height: 55px;
+    width: 267px;
+    padding-left: 10px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+.child-input-right button {
+    height: 47px;
+    width: 60px;
+}
+.over-lay {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 7px;
+}
+/* Bỏ viền tròn cho nút Dropdown */
+#dropdown-basic {
+    display: flex;
+    align-items: center;
+    height: 55px;
+    width: 237px;
+    padding-left: 10px;
+    outline: none;
+    border: none;
+    margin-right: 15px;
+    border-top-right-radius: 3p !important;
+    border-bottom-right-radius: 3px !important;
+    border-radius: 0 !important;
+}
+.force-dropdown-down {
+    width: 237px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.button_search {
+    color: #fff;
+    height: 55px !important;
+    width: 85px !important;
+    font-size: 20px;
+    font-weight: bolder;
+    border: none;
+    outline: none;
+    background-color: #f58c13;
+    border-radius: 3px;
+    transition: 0.3s ease-in-out;
+}
+.button_search:hover {
+    color: #fff;
+    height: 55px;
+    font-size: 20px;
+    font-weight: bolder;
+    border: none;
+    outline: none;
+    background-color: #f89f3a;
+    border-radius: 3px;
+}
+.round-button {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+.input-count {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+.increment {
+    /* background-color: #0991ed !important; */
+    background-color: #fff !important;
+    color: #6f6f6f !important;
+    font-size: 20px !important;
+    border: 2px solid #333 !important;
+    transition: 0.5s ease-in-out;
+    display: flex !important; 
+    align-items: center !important;
+}
+.increment:hover {
+    font-size: 22px;
+    font-weight: bold;
+    border: 2px solid #26bed6 !important;
+    color: #26bed6 !important;
+}
+.decrement {
+    /* background-color: #0991ed !important; */
+    background-color: #fff !important;
+    color: #6f6f6f !important;
+    font-size: 20px !important;
+    border: 2px solid #333 !important;
+    transition: 0.5s ease-in-out;
+    display: flex !important; 
+    align-items: center !important;
+}
+.decrement:hover {
+    font-size: 22px;
+    font-weight: bold;
+    border: 2px solid #d63226 !important;
+    color: #d63226 !important;
+}
+.button_booking-main {
+    margin-right: 20px;
+    display: flex;
+    justify-content: end;
+}
+.button_booking {
+    background-color: #f58c13 !important;
+    border: none !important;
+    outline: none !important;
+    color: #333;
+    font-size: 17px !important;
+    width: 110px !important;
+    height: 35px !important;
+    font-weight: bold;
+    border-radius: 5px !important;
+    transition: 0.3s ease-in-out;
+}
+.button_booking:hover {
+    background-color: #f89f3a !important;
+    color: #fff;
+}

@@ -54,7 +54,6 @@ function CustomNavbar() {
                   <NavDropdown.Item href="#action/3.1" className="dropdown-item">
                     <button className="register ">Đăng Ký</button>
                   </NavDropdown.Item>
-                  <NavDropdown.Divider />
                   <NavDropdown.Item href="#action/3.2">
                   </NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.3" className="dropdown-item">

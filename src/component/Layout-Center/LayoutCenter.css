@@ -1,0 +1,120 @@
+.layout-center {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.layout-top {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.layout-top-left {
+    width: 66.4%;
+    height: 225px;
+}
+.layout-top-right {
+    width: 33%;
+    height: 225px;
+}
+.layout-top-left img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+.layout-top-right img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+.layout-bottom {
+    width: 100%;
+    height: 225px;
+    display: flex;
+}
+.layout-bottom-left {
+    width: 33%;
+    height: 100%;
+}
+.layout-bottom-center {
+    width: 33%;
+    height: 100%;
+}
+.layout-bottom-right {
+    width: 33%;
+    height: 100%;
+}
+.layout-bottom-left img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+.layout-bottom-center img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+.layout-bottom-right img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+.layout-top,
+.layout-bottom {
+    display: flex;
+    gap: 10px;
+}
+
+.layout-top-left img,
+.layout-top-right img,
+.layout-bottom-left img,
+.layout-bottom-center img,
+.layout-bottom-right img {
+    width: 100%;
+    height: 100%; /* Đảm bảo ảnh chiếm hết chiều cao */
+    object-fit: cover; /* Giữ tỉ lệ ảnh khi bao phủ */
+}
+
+.card-img-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Overlay chiếm hết chiều cao của ảnh */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 10px;
+}
+
+.card-img-overlay strong h2,
+.card-img-overlay p {
+    color: white;
+    font-weight: bold;
+}
+
+/* Hiệu ứng hover cho các thẻ card */
+.layout-top-left:hover .card-img-overlay,
+.layout-top-right:hover .card-img-overlay,
+.layout-bottom-left:hover .card-img-overlay,
+.layout-bottom-center:hover .card-img-overlay,
+.layout-bottom-right:hover .card-img-overlay {
+    opacity: 1;
+    background-image: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.5) 0%,
+        rgba(0, 0, 0, 0.3) 30%,
+        rgba(0, 0, 0, 0.01) 50%,
+        rgba(0, 0, 0, 0) 100%
+    );
+    transition: opacity 0.3s ease, background-image 0.3s ease;
+}
+
+.layout-top-left:hover,
+.layout-top-right:hover,
+.layout-bottom-left:hover,
+.layout-bottom-center:hover,
+.layout-bottom-right:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Thêm hiệu ứng shadow */
+    transform: scale(1.01); /* Phóng to nhẹ khi hover */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}

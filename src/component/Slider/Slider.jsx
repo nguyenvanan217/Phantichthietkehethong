@@ -21,19 +21,19 @@ function SimpleSlider() {
         <div className="slider-container slider">
             <Slider {...settings}>
                 <div>
-                    <img src={slider1} alt="" width="1295px" height="270px" />
+                    <img src={slider1} alt="" width="1295px" height="270px" class="img-fluid" />
                 </div>
                 <div>
-                    <img src={slider2} alt="" width="1295px" height="270px" />
+                    <img src={slider2} alt="" width="1295px" height="270px" class="img-fluid" />
                 </div>
                 <div>
-                    <img src={slider3} alt="" width="1295px" height="270px" />
+                    <img src={slider3} alt="" width="1295px" height="270px" class="img-fluid" />
                 </div>
                 <div>
-                    <img src={slider4} alt="" width="1295px" height="270px" />
+                    <img src={slider4} alt="" width="1295px" height="270px" class="img-fluid" />
                 </div>
                 <div>
-                    <img src={slider5} alt="" width="1295px" height="270px" />
+                    <img src={slider5} alt="" width="1295px" height="270px" class="img-fluid" />
                 </div>
             </Slider>
         </div>

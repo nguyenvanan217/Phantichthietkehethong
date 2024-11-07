@@ -4,26 +4,35 @@
     align-items: center;
     margin-top: 20px;
 }
+.best-combo strong {
+    font-weight: bold;
+}
 .fire-customs {
     display: flex;
     align-items: center;
     gap: 5px;
     font-size: 16px;
     padding: 8px 13px;
-    background: #f4dcdb;
+    background-color: #f4dcdb;
     border-radius: 30px;
     color: #e52822;
-    top: -7px;
     font-weight: normal;
 }
-.fire-customs .fire {
+.fire-customs p {
+    font-size: 18px;
+    color: #e52822;
+}
+.icon-fire svg {
+    margin-bottom: 2px;
     font-size: 20px;
 }
 .customs_24h {
     margin-bottom: 0px !important;
     font-size: 18px;
 }
-.booking-now {
+.booking-now p{
     font-size: 19px;
     color: #333;
+    font-weight: bold;
+    margin-bottom: 40px;
 }

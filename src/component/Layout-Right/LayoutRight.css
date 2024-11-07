@@ -1,0 +1,130 @@
+.layout-bottom {
+    display: flex;
+}
+.layout-left {
+    width: 70%;
+}
+.layout-left img {
+    width: 100%;
+    height: 200px;
+}
+.layout-left-top {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.layout-left-top img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.layout-left-top .card-img-overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.layout-bottom {
+    width: 100%;
+    gap: 10px;
+}
+.layoutleft-bottom-left,
+.layoutleft-bottom-right {
+    width: 100%;
+}
+.layoutleft-bottom-left img {
+    width: 100%;
+    height: 200px;
+}
+.layoutleft-bottom-right img {
+    width: 100%;
+    height: 200px;
+}
+.layout-right {
+    width: 30%;
+    height: 411px;
+}
+.layout-right img {
+    width: 100%;
+    height: 100%;
+}
+.layout-bottom {
+    display: flex;
+    gap: 10px;
+}
+
+.layoutleft-bottom-left,
+.layoutleft-bottom-right {
+    width: 50%;
+    position: relative;
+}
+
+.layoutleft-bottom-left img,
+.layoutleft-bottom-right img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.layoutleft-bottom-left .card-img-overlay,
+.layoutleft-bottom-right .card-img-overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 10px;
+}
+
+.text strong,
+p {
+    color: #ffff;
+    font-weight: bold;
+}
+.layout-left img,
+.layout-left-top img,
+.layoutleft-bottom-left img,
+.layoutleft-bottom-right img,
+.layout-right img {
+    border-radius: 4px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.layout-left-top .card-img-overlay,
+.layoutleft-bottom-left .card-img-overlay,
+.layoutleft-bottom-right .card-img-overlay,
+.layout-right .card-img-overlay {
+
+    transition: opacity 0.3s ease;
+}
+
+.layout-left-top:hover .card-img-overlay,
+.layoutleft-bottom-left:hover .card-img-overlay,
+.layoutleft-bottom-right:hover .card-img-overlay,
+.layout-right:hover .card-img-overlay {
+    opacity: 1;
+    background-image: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.5) 0%,
+        rgba(0, 0, 0, 0.3) 30%,
+        rgba(0, 0, 0, 0.01) 50%,
+        rgba(0, 0, 0, 0) 100%
+    );
+    transition: opacity 0.3s ease, background-image 0.3s ease; 
+}
+
+.layout-left-top:hover,
+.layoutleft-bottom-left:hover,
+.layoutleft-bottom-right:hover,
+.layout-right:hover {
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+    transform: scale(1.001);
+    transition: transform 0.5s ease, box-shadow 0.3s ease;
+}

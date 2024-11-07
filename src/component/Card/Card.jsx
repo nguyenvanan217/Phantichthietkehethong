@@ -13,6 +13,7 @@ function Card() {
                         <img
                             src={card1}
                             alt=""
+                            class="img-fluid"
                             className="card-img"
                             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                         />
@@ -33,6 +34,7 @@ function Card() {
                         <img
                             src={card2}
                             alt=""
+                            class="img-fluid"
                             className="card-img"
                             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                         />
@@ -53,6 +55,7 @@ function Card() {
                         <img
                             src={card3}
                             alt=""
+                            class="img-fluid"
                             className="card-img"
                             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                         />
@@ -72,6 +75,7 @@ function Card() {
                         <img
                             src={card4}
                             alt=""
+                            class="img-fluid"
                             className="card-img"
                             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                         />

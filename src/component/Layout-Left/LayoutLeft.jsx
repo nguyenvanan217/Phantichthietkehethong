@@ -1,55 +1,55 @@
 import React from 'react';
-import img1 from '../../assets/Image/layout1.webp';
-import img2 from '../../assets/Image/layout2.webp';
-import img3 from '../../assets/Image/layout3.webp';
-import img4 from '../../assets/Image/layout4.webp';
-import './LayoutRight.css';
-function LayoutRight() {
+import img5 from '../../assets/Image/layout5.webp';
+import img6 from '../../assets/Image/layout6.png';
+import img7 from '../../assets/Image/layout7.webp';
+import img8 from '../../assets/Image/layout8.webp';
+import './LayoutLeft.css';
+function LayoutLeft() {
     return (
-        <div className="container d-flex gap-3">
+        <div className="container d-flex gap-3 layout-main">
+            <div className="layout-right card position-relative">
+                <img src={img5} alt="" style={{ objectFit: 'cover' }} />
+                <div className="card-img-overlay d-flex flex-column justify-content-end text">
+                    <strong>
+                        <h2>Nha Trang</h2>
+                    </strong>
+                    <p>677 khách sạn</p>
+                </div>
+            </div>
             <div className="layout-left">
                 <div className="layout-left-top card position-relative">
-                    <img src={img1} alt="" style={{ objectFit: 'cover' }} />
+                    <img src={img6} alt="" style={{ objectFit: 'cover' }} />
                     <div className="card-img-overlay d-flex flex-column justify-content-end text">
                         <strong>
-                            <h2>Phú Quốc</h2>
+                            <h2>Đà Nẵng</h2>
                         </strong>
                         <p>772 khách sạn</p>
                     </div>
                 </div>
                 <div className="layout-bottom">
                     <div className="layoutleft-bottom-left card position-relative">
-                        <img src={img2} alt="" style={{ objectFit: 'cover' }} />
+                        <img src={img7} alt="" style={{ objectFit: 'cover' }} />
                         <div className="card-img-overlay d-flex flex-column justify-content-end text">
                             <strong>
-                                <h2>Đà lạt</h2>
+                                <h2>Phan Thiết</h2>
                             </strong>
                             <p>842 khách sạn</p>
                         </div>
                     </div>
                     <div className="layoutleft-bottom-right card position-relative">
-                        <img src={img3} alt="" style={{ objectFit: 'cover' }} />
+                        <img src={img8} alt="" style={{ objectFit: 'cover' }} />
                         <div className="card-img-overlay d-flex flex-column justify-content-end text">
                             <strong>
                                 {' '}
-                                <h2>Quy Nhơn</h2>
+                                <h2>Phú Yên</h2>
                             </strong>
                             <p>85 khách sạn</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="layout-right card position-relative">
-                <img src={img4} alt="" style={{ objectFit: 'cover' }} />
-                <div className="card-img-overlay d-flex flex-column justify-content-end text">
-                    <strong>
-                        <h2>Vũng Tàu</h2>
-                    </strong>
-                    <p>677 khách sạn</p>
-                </div>
-            </div>
         </div>
     );
 }
 
-export default LayoutRight;
+export default LayoutLeft;

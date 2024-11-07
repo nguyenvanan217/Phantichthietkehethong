@@ -36,3 +36,7 @@ body {
     scrollbar-width: thin;
     scrollbar-color: #3b667e #f1f1f1; /* thumb màu #888, track màu #f1f1f1 */
 }
+.navbar-toggler {
+    border: 2px solid #fff !important;
+    background-color: #fff !important;
+}

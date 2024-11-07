@@ -7,6 +7,9 @@ import { FaFire } from 'react-icons/fa';
 import SimpleSlider from '../../component/Slider/Slider.jsx';
 import Card from '../../component/Card/Card.jsx';
 import Title from '../../component/Title/Title.jsx';
+import LayoutRight from '../../component/Layout-Right/LayoutRight.jsx';
+import LayoutLeft from '../../component/Layout-Left/LayoutLeft.jsx';
+import LayoutCenter from '../../component/Layout-Center/LayoutCenter.jsx';
 
 function KhachSanPage() {
     return (
@@ -31,6 +34,17 @@ function KhachSanPage() {
                 customs="Super Hot"
                 bookingnow="Lên rừng xuống biển. Trọn vẹn việt nam"
             />
+            <LayoutRight />
+            <LayoutLeft />
+            <Title
+                strong="Điểm đến yêu thích nước ngoài"
+                icon={<FaFire className="fire" />}
+                customs="270 khách đã đặt phòng trong 24h qua"
+                bookingnow="Bao la thế giới. Bốn bể là nhà"
+            />
+            <div className="container">
+                <LayoutCenter />
+            </div>
         </div>
     );
 }

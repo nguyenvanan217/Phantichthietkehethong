@@ -1,3 +1,4 @@
 .slider img{
     object-fit: cover;
+    cursor: pointer;
 }

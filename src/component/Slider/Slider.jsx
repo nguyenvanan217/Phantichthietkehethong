@@ -18,7 +18,7 @@ function SimpleSlider() {
         slidesToScroll: 1,
     };
     return (
-        <div className="slider-container slider">
+        <div className="slider-container slider container">
             <Slider {...settings}>
                 <div>
                     <img src={slider1} alt="" width="1295px" height="270px" class="img-fluid" />

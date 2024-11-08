@@ -88,6 +88,11 @@ p {
     color: #ffff;
     font-weight: bold;
 }
+.card-img-overlay h2,
+.card-img-overlay p {
+    position: relative;
+    top: 23px;
+}
 .layout-left img,
 .layout-left-top img,
 .layoutleft-bottom-left img,

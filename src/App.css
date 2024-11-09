@@ -6,6 +6,9 @@
 body {
     font-family: Helvetica, Arial, sans-serif;
 }
+li {
+    list-style-type: none;
+}
 /* Đặt màu sắc và độ rộng cho scrollbar */
 ::-webkit-scrollbar {
     width: 12px !important; /* Chiều rộng của thanh cuộn */

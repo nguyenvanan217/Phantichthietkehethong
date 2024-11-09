@@ -10,6 +10,7 @@ import Title from '../../component/Title/Title.jsx';
 import LayoutRight from '../../component/Layout-Right/LayoutRight.jsx';
 import LayoutLeft from '../../component/Layout-Left/LayoutLeft.jsx';
 import LayoutCenter from '../../component/Layout-Center/LayoutCenter.jsx';
+import Footer from '../../component/Footer/Footer.jsx';
 
 function KhachSanPage() {
     return (
@@ -45,6 +46,7 @@ function KhachSanPage() {
             <div className="container">
                 <LayoutCenter />
             </div>
+            <Footer />
         </div>
     );
 }

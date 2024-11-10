@@ -20,12 +20,14 @@ function CustomNavbar() {
             <Navbar expand="lg" className="back_group">
                 <Container className="d-flex col-12">
                     <Navbar.Brand className="logo d-flex justify-content-between align-items-center">
-                        <a href="/"><img src={imglogo} alt="Logo" /></a>
+                        <a href="/">
+                            <img src={imglogo} alt="Logo" />
+                        </a>
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav" className="d-flex align-items-center">
                         <Nav className="me-auto d-flex gap-4 ms-3 align-items-center">
-                            <NavLink to="/quang-ba" className="text-link ml-3">
+                            <NavLink exact to="/" className="text-link ml-3">
                                 <strong>Quảng Bá</strong>
                             </NavLink>
                             <NavLink to="/tour-du-lich" className="text-link ml-3">

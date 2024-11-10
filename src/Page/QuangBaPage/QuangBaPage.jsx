@@ -45,6 +45,7 @@ function QuangBaPage() {
             />
             <div className="container">
                 <LayoutCenter />
+                
             </div>
             <Footer />
         </div>

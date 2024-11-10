@@ -6,7 +6,7 @@ function App() {
     return (
         <Router>
             <Switch>
-                <Route path="/quang-ba" component={QuangBaPage} />
+                <Route exact path="/" component={QuangBaPage} />
                 <Route path="/tour-du-lich" component={TourDuLich} />
             </Switch>
         </Router>

@@ -8,7 +8,7 @@ function Card() {
     return (
         <div className="container mt-5">
             <div className="row">
-                <div className="col-6 col-lg-3 mb-4 d-flex justify-content-center align-items-center">
+                <div className="col-12 col-md-6 col-lg-3 mb-4 d-flex justify-content-center align-items-center">
                     <div className="card position-relative" style={{ width: '320px', height: '420px' }}>
                         <img
                             src={card1}
@@ -29,7 +29,7 @@ function Card() {
                     </div>
                 </div>
 
-                <div className="col-6 col-lg-3 mb-4 d-flex justify-content-center align-items-center">
+                <div className="col-12 col-md-6 col-lg-3 mb-4 d-flex justify-content-center align-items-center">
                     <div className="card position-relative" style={{ width: '320px', height: '420px' }}>
                         <img
                             src={card2}
@@ -50,7 +50,7 @@ function Card() {
                     </div>
                 </div>
 
-                <div className="col-6 col-lg-3 mb-4 d-flex justify-content-center align-items-center">
+                <div className="col-12 col-md-6 col-lg-3 mb-4 d-flex justify-content-center align-items-center">
                     <div className="card position-relative" style={{ width: '320px', height: '420px' }}>
                         <img
                             src={card3}
@@ -70,7 +70,7 @@ function Card() {
                         </div>
                     </div>
                 </div>
-                <div className="col-6 col-lg-3 mb-4 d-flex justify-content-center align-items-center">
+                <div className="col-12 col-md-6 col-lg-3 mb-4 d-flex justify-content-center align-items-center">
                     <div className="card position-relative" style={{ width: '320px', height: '420px' }}>
                         <img
                             src={card4}

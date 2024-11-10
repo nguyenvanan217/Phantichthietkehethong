@@ -4,7 +4,17 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import { InputGroup, Button, FormControl } from 'react-bootstrap';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
-const Banner = ({ title, titleChild, background, placeholder, icon_big_input, icon_btt_left, icon_btt_right, set_room }) => {
+const Banner = ({
+    title,
+    titleChild,
+    background,
+    placeholder,
+    icon_big_input,
+    icon_btt_left,
+    icon_btt_right,
+    set_room,
+    isTour,
+}) => {
     // Khởi tạo state cho từng loại số lượng
     const [counts, setCounts] = useState({
         room: 1,
@@ -27,9 +37,13 @@ const Banner = ({ title, titleChild, background, placeholder, icon_big_input, ic
             [type]: prevCounts[type] > 1 ? prevCounts[type] - 1 : 1,
         }));
     };
-
+    const locations = ['Hồ Chí Minh', 'Hà Nội', 'Cần Thơ', 'Đà Lạt', 'Đà Nẵng', 'Thừa Thiên Huế'];
+    const [selectLocation, setselectLocation] = useState('Hồ Chí Minh');
+    const handleSelect = (e) => {
+        setselectLocation(e.target.innerText);
+    };
     return (
-        <div className="banner-container" style={{ backgroundImage: `url(${background})` }}>
+        <div className="banner-container" style={{ objectFit: 'cover', backgroundImage: `url(${background})` }}>
             <h1>{title} !</h1>
             <h5>{titleChild}</h5>
             <div className="form">
@@ -55,66 +69,94 @@ const Banner = ({ title, titleChild, background, placeholder, icon_big_input, ic
                                             color: 'black',
                                         }}
                                     >
-                                        {set_room}
+                                        {isTour ? `Khởi hành từ: ${selectLocation}` : set_room}
                                     </Dropdown.Toggle>
 
-                                    <Dropdown.Menu className="force-dropdown-down">
-                                        <div className="dropdown-item">
-                                            <strong>Đặt Phòng</strong>
-                                            <InputGroup className="mt-2 input-count">
-                                                <Button className="decrement round-button" onClick={(e) => decrement('room', e)}>
-                                                    -
-                                                </Button>
-                                                <FormControl
-                                                    style={{ fontWeight: 'bold' }}
-                                                    value={counts.room}
-                                                    readOnly
-                                                    className="text-center"
-                                                />
-                                                <Button className="increment round-button" onClick={(e) => increment('room', e)}>
-                                                    +
-                                                </Button>
-                                            </InputGroup>
-                                        </div>
-                                        <Dropdown.Item href="#/action-2">
-                                            <strong>Vé người lớn</strong>
-                                            <InputGroup className="mt-2 input-count">
-                                                <Button className="decrement round-button" onClick={(e) => decrement('adult', e)}>
-                                                    -
-                                                </Button>
-                                                <FormControl
-                                                    style={{ fontWeight: 'bold' }}
-                                                    value={counts.adult}
-                                                    readOnly
-                                                    className="text-center"
-                                                />
-                                                <Button className="increment round-button" onClick={(e) => increment('adult', e)}>
-                                                    +
-                                                </Button>
-                                            </InputGroup>
-                                        </Dropdown.Item>
-                                        <Dropdown.Item href="#/action-3">
-                                            <strong>Vé trẻ em</strong>
-                                            <InputGroup className="mt-2 input-count">
-                                                <Button className="decrement round-button" onClick={(e) => decrement('child', e)}>
-                                                    -
-                                                </Button>
-                                                <FormControl
-                                                    style={{ fontWeight: 'bold' }}
-                                                    value={counts.child}
-                                                    readOnly
-                                                    className="text-center"
-                                                />
-                                                <Button className="increment round-button" onClick={(e) => increment('child', e)}>
-                                                    +
-                                                </Button>
-                                            </InputGroup>
-                                        </Dropdown.Item>
-                                        <NavDropdown.Divider />
-                                        <div className="button_booking-main">
-                                            <button className="button_booking">Đặt Ngay</button>
-                                        </div>
-                                    </Dropdown.Menu>
+                                    {isTour ? (
+                                        <Dropdown.Menu>
+                                            {locations.map((location, index) => (
+                                                <Dropdown.Item key={index} onClick={(e) => handleSelect(e)}>
+                                                    {location}
+                                                </Dropdown.Item>
+                                            ))}
+                                        </Dropdown.Menu>
+                                    ) : (
+                                        <Dropdown.Menu className="force-dropdown-down">
+                                            <div className="dropdown-item">
+                                                <strong>Đặt Phòng</strong>
+                                                <InputGroup className="mt-2 input-count">
+                                                    <Button
+                                                        className="decrement round-button"
+                                                        onClick={(e) => decrement('room', e)}
+                                                    >
+                                                        -
+                                                    </Button>
+                                                    <FormControl
+                                                        style={{ fontWeight: 'bold' }}
+                                                        value={counts.room}
+                                                        readOnly
+                                                        className="text-center"
+                                                    />
+                                                    <Button
+                                                        className="increment round-button"
+                                                        onClick={(e) => increment('room', e)}
+                                                    >
+                                                        +
+                                                    </Button>
+                                                </InputGroup>
+                                            </div>
+                                            <Dropdown.Item href="#/action-2">
+                                                <strong>Vé người lớn</strong>
+                                                <InputGroup className="mt-2 input-count">
+                                                    <Button
+                                                        className="decrement round-button"
+                                                        onClick={(e) => decrement('adult', e)}
+                                                    >
+                                                        -
+                                                    </Button>
+                                                    <FormControl
+                                                        style={{ fontWeight: 'bold' }}
+                                                        value={counts.adult}
+                                                        readOnly
+                                                        className="text-center"
+                                                    />
+                                                    <Button
+                                                        className="increment round-button"
+                                                        onClick={(e) => increment('adult', e)}
+                                                    >
+                                                        +
+                                                    </Button>
+                                                </InputGroup>
+                                            </Dropdown.Item>
+                                            <Dropdown.Item href="#/action-3">
+                                                <strong>Vé trẻ em</strong>
+                                                <InputGroup className="mt-2 input-count">
+                                                    <Button
+                                                        className="decrement round-button"
+                                                        onClick={(e) => decrement('child', e)}
+                                                    >
+                                                        -
+                                                    </Button>
+                                                    <FormControl
+                                                        style={{ fontWeight: 'bold' }}
+                                                        value={counts.child}
+                                                        readOnly
+                                                        className="text-center"
+                                                    />
+                                                    <Button
+                                                        className="increment round-button"
+                                                        onClick={(e) => increment('child', e)}
+                                                    >
+                                                        +
+                                                    </Button>
+                                                </InputGroup>
+                                            </Dropdown.Item>
+                                            <NavDropdown.Divider />
+                                            <div className="button_booking-main">
+                                                <button className="button_booking">Đặt Ngay</button>
+                                            </div>
+                                        </Dropdown.Menu>
+                                    )}
                                 </Dropdown>
                             </div>
                             <button className="button_search">Tìm</button>

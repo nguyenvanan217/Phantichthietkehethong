@@ -44,6 +44,15 @@
 .time-css span {
     font-size: 12px;
 }
+.text-link {
+    text-decoration: none;
+    color: inherit; 
+}
+
+.nav-link-container {
+    display: flex; /* Sử dụng flexbox để căn chỉnh các liên kết */
+    gap: 20px; /* Khoảng cách giữa các liên kết */
+}
 /* .drop-css{
     margin-left: 20px;
 } */

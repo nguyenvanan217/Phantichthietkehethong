@@ -84,6 +84,8 @@
     background-color: rgba(0, 0, 0, 0.5);
     padding: 20px;
     border-radius: 7px;
+    width: 698px;
+    height: 168px;
 }
 /* Bỏ viền tròn cho nút Dropdown */
 #dropdown-basic {
@@ -149,7 +151,7 @@
     font-size: 20px !important;
     border: 2px solid #333 !important;
     transition: 0.5s ease-in-out;
-    display: flex !important; 
+    display: flex !important;
     align-items: center !important;
 }
 .increment:hover {
@@ -165,7 +167,7 @@
     font-size: 20px !important;
     border: 2px solid #333 !important;
     transition: 0.5s ease-in-out;
-    display: flex !important; 
+    display: flex !important;
     align-items: center !important;
 }
 .decrement:hover {
@@ -194,4 +196,114 @@
 .button_booking:hover {
     background-color: #f89f3a !important;
     color: #fff;
+}
+.dropdown-menu {
+    height: auto;
+}
+@media (max-width: 768px) {
+    .banner-container h1 {
+        font-size: 26px;
+    }
+    .banner-container h5 {
+        font-size: 17px;
+        margin-bottom: 10px;
+    }
+    .banner-container {
+        height: 625px;
+        background-size: 'contain';
+        background-position: center;
+        color: white;
+        padding: 90px 0px 0px 10px;
+    }
+    .big-input input {
+        width: 308px;
+        height: 40px;
+    }
+    .icon-big-input {
+        height: 40px;
+        font-size: 18px;
+    }
+    .child-input-left input {
+        width: 308px;
+        height: 35px;
+    }
+    .icon-left {
+        height: 35px;
+        font-size: 18px;
+    }
+    #dropdown-basic {
+        width: 244px !important;
+        height: 35px !important;
+    }
+    .over-lay {
+        width: 370px;
+        height: 168px;
+    }
+    .child-input-btt {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .icon-right {
+        height: 35px;
+        font-size: 18px;
+    }
+    .button_search {
+        width: 50px !important;
+        height: 35px !important;
+        font-size: 18px;
+    }
+}
+/* Mobile */
+@media (max-width: 576px) {
+    .banner-container h1 {
+        font-size: 26px;
+    }
+    .banner-container h5 {
+        font-size: 17px;
+        margin-bottom: 10px;
+    }
+    .banner-container {
+        height: 625px;
+        background-size: 'contain';
+        background-position: center;
+        color: white;
+        padding: 90px 0px 0px 10px;
+    }
+    .big-input input {
+        width: 308px;
+        height: 40px;
+    }
+    .icon-big-input {
+        height: 40px;
+        font-size: 18px;
+    }
+    .child-input-left input {
+        width: 308px;
+        height: 35px;
+    }
+    .icon-left {
+        height: 35px;
+        font-size: 18px;
+    }
+    #dropdown-basic {
+        width: 244px !important;
+        height: 35px !important;
+    }
+    .over-lay {
+        width: 370px;
+        height: 168px;
+    }
+    .child-input-btt {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .icon-right {
+        height: 35px;
+        font-size: 18px;
+    }
+    .button_search {
+        width: 50px !important;
+        height: 35px !important;
+        font-size: 18px;
+    }
 }

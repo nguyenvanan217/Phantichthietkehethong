@@ -1,8 +1,8 @@
 import React from 'react';
-import CustomNavbar from '../../component/Navbar/CustomNavbar';
-import Banner from '../../component/Banner/Banner';
-import bannerData from '../../Data/Data.js';
-import './KhachSanPage.css';
+import CustomNavbar from '../../component/Navbar/CustomNavbar.jsx';
+import Banner from '../../component/Banner/Banner.jsx';
+import {bannerData} from '../../Data/Data.js';
+import './QuangBaPage.css';
 import { FaFire } from 'react-icons/fa';
 import SimpleSlider from '../../component/Slider/Slider.jsx';
 import Card from '../../component/Card/Card.jsx';
@@ -12,7 +12,7 @@ import LayoutLeft from '../../component/Layout-Left/LayoutLeft.jsx';
 import LayoutCenter from '../../component/Layout-Center/LayoutCenter.jsx';
 import Footer from '../../component/Footer/Footer.jsx';
 
-function KhachSanPage() {
+function QuangBaPage() {
     return (
         <div>
             <CustomNavbar />
@@ -51,4 +51,4 @@ function KhachSanPage() {
     );
 }
 
-export default KhachSanPage;
+export default QuangBaPage;

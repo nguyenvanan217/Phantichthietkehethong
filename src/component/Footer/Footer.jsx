@@ -9,7 +9,7 @@ function Footer() {
     return (
         <div className="footer">
             <div className="container-footer">
-                <div className="footer-top d-flex justify-content-around align-items-center">
+                <div className="footer-top">
                     <div className="about-us">
                         <ul>
                             <h4>{dataFooter.aboutUs[0]}</h4>
@@ -147,21 +147,25 @@ function Footer() {
                     </div>
                 </div>
                 <div className="like">
-                    {dataFooter.like.map((item, index) => (
-                        <>
-                            <li key={index} style={{ color: '#3B5998' }}>
-                                {item}
+                    <div className="like-left-content">
+                        {dataFooter.like.map((item, index) => (
+                            <div className="like-left">
+                                <li key={index} style={{ color: '#3B5998' }}>
+                                    {item}
+                                </li>
+                                <button className="">
+                                    <AiFillLike /> Like 1.3M
+                                </button>
+                            </div>
+                        ))}
+                    </div>
+                    <div className="like-right-content">
+                        {dataFooter.mail.map((item, index) => (
+                            <li key={index} style={{ color: '#818180', fontSize: '18px' }}>
+                                {item.icon} {item.text}
                             </li>
-                            <button className="">
-                                <AiFillLike /> Like 1.3M
-                            </button>
-                        </>
-                    ))}
-                    {dataFooter.mail.map((item, index) => (
-                        <li key={index} className="" style={{ color: '#818180', fontSize: '18px' }}>
-                            {item.icon} {item.text}
-                        </li>
-                    ))}
+                        ))}
+                    </div>
                 </div>
                 <div className="social-icon">
                     {dataFooter.socialLinks.map((item, index) => {

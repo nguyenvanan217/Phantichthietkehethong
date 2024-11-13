@@ -13,10 +13,17 @@
     color: #fff;
     font-size: 30px;
 }
-.text-link.active {
-    color: #26bed6 !important;
+.text-link a {
+    color: #fff;
+    font-size: 21px;
 }
-
+a .active {
+    color: #26bed6 !important;
+    font-size: 21px;
+}
+.text-link a {
+    text-decoration: none;
+}
 /* .right-container {
     display: flex;
     flex-direction: column;
@@ -64,7 +71,7 @@
     color: white;
 }
 .dropdown-margin {
-    margin-right: 30px; /* Thay đổi giá trị theo ý bạn */
+    margin-right: 30px; 
 }
 .register {
     background-color: #26bed6;
@@ -82,8 +89,8 @@
 }
 
 .dropdown-item:active {
-    outline: none !important; /* Không có viền khi hover */
-    background-color: transparent !important; /* Đảm bảo không có màu nền */
+    outline: none !important; 
+    background-color: transparent !important; 
 }
 .have-account {
     color: #333333 !important ;

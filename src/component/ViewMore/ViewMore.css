@@ -1,0 +1,27 @@
+.view-more {
+    /* display: inline-block; */
+    color: #26bed6;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 2px;
+    border: solid 1px #26bed6;
+    background-color: #fff;
+    padding: 7px 20px;
+    margin-bottom: 15px;
+    transition: all 0.3s;
+}
+.view-more:hover {
+    background-color: #26bed6;
+    border-color: #26bed6;
+    color: #fff;
+}
+.view-more:hover .next{
+    transform: translateX(15px);
+}
+.next {
+    transition: all 0.3s;
+    display: flex;
+    justify-content: center;
+    font-size: 22px;
+    display: inline-block; 
+}

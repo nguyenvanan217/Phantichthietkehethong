@@ -1,21 +1,70 @@
 .tour-item {
     background-color: #ffffff;
-    height: 530px;
     cursor: pointer;
     transition: all 0.25s ease-in-out;
     border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+}
+.center-bottom-card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+}
+.card-center,
+.card-bottom {
+    margin-bottom: auto;
+}
+.tour-item img {
+    object-fit: cover;
+    flex-shrink: 0;
+}
+.tour-content {
+    /* background-color: red; */
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.card-center-bottom {
+    display: flex;
+    flex-direction: column;
+    margin-top: auto;
+}
+.card-top {
+    display: flex;
+    flex-direction: column;
+}
+.card-center {
+    display: flex;
+    flex-direction: column;
+    background-color: #fceaea;
+    flex: 1;
 }
 .tour-item:hover {
     box-shadow: 0 0 16px 0 rgba(38, 190, 214, 0.8);
     /* border: solid 1px #26bed6; */
 }
 .tour-item h5 {
-    display: -webkit-box; /* Cần thiết để sử dụng webkit-line-clamp */
-    -webkit-box-orient: vertical; /* Thiết lập chiều hướng cho box */
-    -webkit-line-clamp: 2; /* Giới hạn hiển thị nội dung tối đa 2 dòng */
-    overflow: hidden; /* Ẩn phần nội dung vượt quá giới hạn */
-    text-overflow: ellipsis; /* Thêm dấu ba chấm nếu nội dung bị cắt */
-    width: 100%; /* Đảm bảo chiều rộng của thẻ h5 */
+    /* display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%; */
+    word-break: break-all;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+}
+.highlight-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 100%;
 }
 .tour-header {
     z-index: 1000;
@@ -26,9 +75,10 @@
     color: #ffffff;
     margin: 0 0 0 -26px;
     background-color: #e52822;
-    top: 15px;
+    left: 16.3px;
+    top: 22px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12), 0 0 2px rgba(0, 0, 0, 0.24);
-    padding: 10px 20px; /* Thêm padding để làm phần header có không gian */
+    padding: 5px 20px;
 }
 
 .tour-header::before {
@@ -36,12 +86,10 @@
     position: absolute;
     border-style: solid;
     border-color: transparent;
-    bottom: -10px; /* Điều chỉnh vị trí của mũi nhọn */
-    padding: 0;
-    border-width: 0 10px 10px 10px; /* Thêm chiều rộng cho nếp gấp */
-    border-top-color: #e52822; /* Màu của phần nếp gấp */
-    left: 50%;
-    transform: translateX(-50%); /* Đảm bảo phần nếp gấp ở chính giữa */
+    border-width: 0 10px 10px 0;
+    border-right-color: #9c0000;
+    top: 100%;
+    left: 0;
 }
 
 .rating {
@@ -60,7 +108,7 @@
     width: 200px;
     height: 50px;
     display: inline-block;
-    overflow: auto;
+    /* overflow: auto; */
     padding-right: 5px;
 }
 .highlight1 li,
@@ -87,6 +135,8 @@
     font-size: 16px;
     text-decoration: line-through;
     padding-right: 20px;
+    margin-bottom: 0;
+    margin-top: 20px;
 }
 .price {
     font-size: 24px;
@@ -95,4 +145,22 @@
     display: flex;
     justify-content: end;
     padding-right: 20px;
+}
+.count-tour {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #e52822;
+    background-color: #fceaea;
+    padding: 2px 5px 3px;
+    margin-top: 3px;
+    font-weight: 500;
+    border-radius: 2px;
+    font-size: 15px;
+    margin-left: 10px;
+}
+.count-price {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
 }

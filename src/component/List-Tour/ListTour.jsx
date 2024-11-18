@@ -21,9 +21,9 @@ function ListTour({ tours }) {
                                     <div className="card-center">
                                         <div className="review-tour d-flex align-items-center gap-1 ms-2">
                                             <p className="rating">{tour.rating}</p>
-                                            <p style={{ color: '#9FC43A' }}>{tour.Evaluate} </p>
-                                            <p style={{ color: '#333', fontSize: '20px' }}>&#8739;</p>
-                                            <p style={{ color: '#828282' }}> {tour.reviews} Đánh Giá</p>
+                                            {tour.Evaluate ?  <p className="evaluate">{tour.Evaluate}</p> : <div style={{display: "none"}}></div>}
+                                            {tour.rating ? <p style={{ color: '#333', fontSize: '20px' }}>&#8739;</p> : <div style={{display: "none"}}></div>}
+                                           {tour.rating &&  <p style={{ color: '#828282' }}> {tour.reviews} Đánh Giá</p>}
                                         </div>
                                         <div className="hightlight-content">
                                             <ul className="highlight1">
@@ -39,7 +39,7 @@ function ListTour({ tours }) {
                                         </div>
                                     </div>
                                     <div className="card-bottom">
-                                        {tour.discount && ( <p className="discount">{tour.discount}</p>) : ( <p className=""></p>)}
+                                        {tour.discount && ( <p className="discount">{tour.discount}</p>)}
                                         <div className="count-price">
                                             <p className="price"> {tour.price}</p>
                                             {tour.count && <p className="count-tour">{tour.count}</p>}

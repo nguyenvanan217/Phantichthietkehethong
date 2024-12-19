@@ -17,6 +17,9 @@
 .card-bottom {
     margin-bottom: auto;
 }
+.card-bottom {
+    margin-top: 70px;
+}
 .tour-item img {
     object-fit: cover;
     flex-shrink: 0;
@@ -39,12 +42,18 @@
 .card-center {
     display: flex;
     flex-direction: column;
-    background-color: #fceaea;
     flex: 1;
 }
 .tour-item:hover {
     box-shadow: 0 0 16px 0 rgba(38, 190, 214, 0.8);
     /* border: solid 1px #26bed6; */
+}
+.evaluate {
+    color: #9fc43a;
+}
+.hightlight-content {
+    display: flex;
+    white-space: nowarp;
 }
 .tour-item h5 {
     /* display: -webkit-box;

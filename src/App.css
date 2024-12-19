@@ -43,3 +43,7 @@ li {
     border: 2px solid #fff !important;
     background-color: #fff !important;
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

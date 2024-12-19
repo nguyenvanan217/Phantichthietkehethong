@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import imglogo from '../../assets/Image/logo.svg';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -14,8 +13,28 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './CustomNavbar.css';
 import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 function CustomNavbar() {
+    const [currentUser, setCurrentUser] = useState(null);
+    const history = useHistory();
+
+    useEffect(() => {
+        const user = localStorage.getItem('currentUser');
+        if (user) {
+            setCurrentUser(JSON.parse(user));
+        }
+    }, []);
+
+    const handleLogout = () => {
+        localStorage.removeItem('currentUser');
+        setCurrentUser(null);
+        toast.success('Đăng xuất thành công!');
+        history.push('/');
+    };
+
     return (
         <div className="navbar-container">
             <Navbar expand="lg" className="back_group">
@@ -26,43 +45,65 @@ function CustomNavbar() {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav d-flex align-items-center">
                         <Nav className="me-auto d-flex align-items-center">
-                            <Nav.Link
-                                className={`text-link ml-3`}
-                            >
-                                <NavLink to='/' exact><strong> Khách Sạn</strong></NavLink>
+                            <Nav.Link className={`text-link ml-3`}>
+                                <NavLink to="/" exact>
+                                    <strong> Khách Sạn</strong>
+                                </NavLink>
                             </Nav.Link>
-                            <Nav.Link
-                                className={`text-link ml-3`}
-                            >
-                                <NavLink to='/tour-du-lich' ><strong> Tour Du Lịch</strong></NavLink>
+                            <Nav.Link className={`text-link ml-3`}>
+                                <NavLink to="/tour-du-lich">
+                                    <strong> Tour Du Lịch</strong>
+                                </NavLink>
                             </Nav.Link>
                         </Nav>
-                        <Nav className="ms-lg-5">
-                            <NavDropdown
-                                title={
-                                    <span className="dropup-center">
-                                        <IoPersonCircleOutline className="IoPersonCircleOutline" />
-                                    </span>
-                                }
-                                id="basic-nav-dropdown"
-                                drop="down"
-                                className="drop-css ms-4 d-flex flex-column align-items-center justify-content-center dropdown-margin"
-                            >
-                                <NavDropdown.Item href="#action/3.1" className="dropdown-item">
-                                    <button className="register ">Đăng Ký</button>
-                                </NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.2"></NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.3" className="dropdown-item">
-                                    <p className="have-account">Bạn đã có tài khoản ?</p>
-                                    <p className="register-now">Đăng ký ngay</p>
-                                </NavDropdown.Item>
-                            </NavDropdown>
-                            <Row className="d-flex flex-column align-content-end">
-                                <Col xxl={12} className="phone-css d-flex justify-content-center align-items-center gap-2">
+                        <Nav className="ms-lg-5 d-flex flex-row align-items-center">
+                            <div className="d-flex align-items-center justify-center">
+                                <NavDropdown
+                                    title={
+                                        <div className="dropup-center">
+                                            <IoPersonCircleOutline className="IoPersonCircleOutline" />
+                                        </div>
+                                    }
+                                    id="basic-nav-dropdown"
+                                    drop="down"
+                                    className="drop-css ms-4 d-flex flex-column align-items-center justify-content-center dropdown-margin"
+                                >
+                                    {currentUser ? (
+                                        <>
+                                            <NavDropdown.Item className="dropdown-item p-2">
+                                                <span className="text-gray-700">
+                                                    Xin chào,{' '}
+                                                    <span className="font-bold text-blue-600">{currentUser.fullName}</span>
+                                                </span>
+                                            </NavDropdown.Item>
+                                            <NavDropdown.Divider />
+                                            <NavDropdown.Item onClick={handleLogout} className="dropdown-item">
+                                                <button className="text-red-600">Đăng xuất</button>
+                                            </NavDropdown.Item>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <NavDropdown.Item className="dropdown-item">
+                                                <NavLink to="/register">
+                                                    <button className="register">Đăng Ký</button>
+                                                </NavLink>
+                                            </NavDropdown.Item>
+                                            <NavDropdown.Item className="dropdown-item">
+                                                <p className="have-account">Bạn đã có tài khoản ?</p>
+                                                <Link to="/login" className="register-now text-decoration-none">
+                                                    Đăng nhập ngay
+                                                </Link>
+                                            </NavDropdown.Item>
+                                        </>
+                                    )}
+                                </NavDropdown>
+                            </div>
+                            <div className="d-flex flex-column">
+                                <div className="phone-css d-flex align-items-center gap-2">
                                     <MdPhoneInTalk className="MdPhoneInTalk" />
                                     <a href="tel:+1900 1870">1900 1870</a>
-                                </Col>
-                                <Col className="time-css d-flex justify-content-center align-items-center gap-2">
+                                </div>
+                                <div className="time-css d-flex align-items-center gap-2">
                                     <ImClock />
                                     <span>
                                         <strong>7h30</strong>
@@ -73,8 +114,8 @@ function CustomNavbar() {
                                     <span>
                                         <strong>IVIVU Hồ Chí Minh</strong>
                                     </span>
-                                </Col>
-                            </Row>
+                                </div>
+                            </div>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

@@ -1,7 +1,9 @@
 .logo {
     background-color: #003c71;
 }
-
+.human-register {
+    display: flex !important;
+}
 .back_group {
     background-color: #003c71;
 }
@@ -12,6 +14,7 @@
 .IoPersonCircleOutline {
     color: #fff;
     font-size: 30px;
+    margin-right: 2px;
 }
 .text-link a {
     color: #fff;
@@ -60,15 +63,16 @@ a .active {
     display: flex; /* Sử dụng flexbox để căn chỉnh các liên kết */
     gap: 20px; /* Khoảng cách giữa các liên kết */
 }
-/* .drop-css{
-    margin-left: 20px;
-} */
+
+
 .dropdown-menu {
     width: 230px;
     height: 150px;
 }
 .drop-css .dropdown-toggle::after {
     color: white;
+    margin-left: 5px;
+    margin-top: 2px;
 }
 .dropdown-margin {
     margin-right: 30px; 
@@ -94,4 +98,16 @@ a .active {
 }
 .have-account {
     color: #333333 !important ;
+}
+
+.dropup-center {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.drop-css .dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }

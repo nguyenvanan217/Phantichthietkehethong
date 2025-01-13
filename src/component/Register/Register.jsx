@@ -96,24 +96,11 @@ function Register() {
             return false;
         }
 
-        // Nếu họ tên ok, check email/phone
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const phoneRegex = /^[0-9]{10}$/;
-
+        // Kiểm tra email/phone không được trống
         if (!formData.emailOrPhone) {
             newFieldErrors.emailOrPhone = true;
             newErrors.emailOrPhone = 'Vui lòng nhập email hoặc số điện thoại';
             toast.error('Vui lòng nhập email hoặc số điện thoại');
-            setFieldErrors(newFieldErrors);
-            setErrors(newErrors);
-            emailPhoneRef.current.focus();
-            return false;
-        }
-
-        if (!emailRegex.test(formData.emailOrPhone) && !phoneRegex.test(formData.emailOrPhone)) {
-            newFieldErrors.emailOrPhone = true;
-            newErrors.emailOrPhone = 'Email hoặc số điện thoại không hợp lệ';
-            toast.error('Email hoặc số điện thoại không hợp lệ');
             setFieldErrors(newFieldErrors);
             setErrors(newErrors);
             emailPhoneRef.current.focus();
@@ -184,24 +171,37 @@ function Register() {
         if (validateForm()) {
             // Check if user already exists
             const existingUsers = JSON.parse(localStorage.getItem('users') || '[]');
-            const userExists = existingUsers.some((user) => user.emailOrPhone === formData.emailOrPhone);
+            
+            console.log('=== DEBUG REGISTER ===');
+            console.log('Current users:', existingUsers);
+            
+            const normalizedInput = formData.emailOrPhone.trim().toLowerCase();
+            console.log('Normalized input:', normalizedInput);
+
+            const userExists = existingUsers.some((user) => {
+                const storedValue = user.emailOrPhone.trim().toLowerCase();
+                console.log('Comparing with:', storedValue);
+                return storedValue === normalizedInput;
+            });
 
             if (userExists) {
                 toast.error('Email hoặc số điện thoại đã được đăng ký');
                 return;
             }
 
-            // Save to localStorage
             const newUser = {
-                fullName: formData.fullName,
-                emailOrPhone: formData.emailOrPhone,
+                fullName: formData.fullName.trim(),
+                emailOrPhone: normalizedInput,
                 password: formData.password,
             };
 
+            console.log('Saving new user:', newUser);
             existingUsers.push(newUser);
             localStorage.setItem('users', JSON.stringify(existingUsers));
+            
+            // Log final state
+            console.log('Updated users list:', JSON.parse(localStorage.getItem('users')));
 
-            // Show success message
             toast.success('Đăng ký thành công!', {
                 onClose: () => {
                     setFormData({

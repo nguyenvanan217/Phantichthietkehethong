@@ -1,0 +1,197 @@
+.booked-tours-page {
+    background-color: #f5f5f5;
+    min-height: calc(100vh - 160px);
+}
+
+.page-title {
+    color: #003c71;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.booked-tour-card {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.booked-tour-card .tour-image {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.tour-details {
+    flex: 1;
+}
+
+.tour-details h3 {
+    color: #003c71;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.tour-info {
+    margin-bottom: 15px;
+}
+
+.rating-reviews {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.highlights h4 {
+    color: #003c71;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.highlights ul {
+    list-style: none;
+    padding: 0;
+}
+
+.highlights li {
+    color: #26bed6;
+    font-size: 14px;
+    margin-bottom: 3px;
+}
+
+.price-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.price-info .discount {
+    color: #828282;
+    text-decoration: line-through;
+    font-size: 14px;
+}
+
+.price-info .price {
+    color: #f79321;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+.remove-button,
+.buy-now-button {
+    padding: 8px 20px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.remove-button {
+    background-color: #fff;
+    color: #e52822;
+    border: 1px solid #e52822;
+}
+
+.buy-now-button {
+    background-color: #f79321;
+    color: white;
+}
+
+.checkout-summary {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    position: sticky;
+    top: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.checkout-summary h3 {
+    color: #003c71;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.summary-details {
+    margin-bottom: 20px;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.summary-item.total {
+    font-weight: bold;
+    color: #f79321;
+    font-size: 18px;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+}
+
+.checkout-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #f79321;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.empty-cart {
+    text-align: center;
+    padding: 50px 0;
+}
+
+.continue-shopping {
+    background-color: #f79321;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+@media (max-width: 992px) {
+    .booked-tour-card {
+        flex-direction: column;
+    }
+
+    .booked-tour-card .tour-image {
+        width: 100%;
+        height: 200px;
+    }
+
+    .price-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .actions {
+        width: 100%;
+    }
+
+    .remove-button,
+    .buy-now-button {
+        flex: 1;
+    }
+}

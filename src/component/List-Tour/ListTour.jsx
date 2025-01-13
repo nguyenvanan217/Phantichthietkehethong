@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './ListTour.css';
 import ViewMore from '../ViewMore/ViewMore';
+import ModalBuyTour from '../ModalBuyTour/ModalBuyTour';
 
 function ListTour({ tours }) {
+    const [selectedTour, setSelectedTour] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleTourClick = (tour) => {
+        setSelectedTour(tour);
+        setIsModalOpen(true);
+    };
+
     return (
         <div className="container">
             <div className="row">
                 {tours.map((tour, index) => (
                     <div key={index} className="col-12 col-sm-6 col-md-4 mb-4">
-                        <div className="tour-item">
+                        <div className="tour-item" onClick={() => handleTourClick(tour)}>
                             <p className="tour-header">{tour.header}</p>
                             <img src={tour.img} alt={tour.title} className="tour-image" width="100%" />
                             <div className="tour-content">
@@ -52,6 +61,14 @@ function ListTour({ tours }) {
                 ))}
             </div>
             <ViewMore />
+            
+            {selectedTour && (
+                <ModalBuyTour
+                    tour={selectedTour}
+                    isOpen={isModalOpen}
+                    onClose={() => setIsModalOpen(false)}
+                />
+            )}
         </div>
     );
 }

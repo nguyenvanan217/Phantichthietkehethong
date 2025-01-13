@@ -98,12 +98,41 @@ function Login() {
         e.preventDefault();
 
         if (validateForm()) {
-            // Get users from localStorage
             const users = JSON.parse(localStorage.getItem('users') || '[]');
-            const user = users.find((u) => u.emailOrPhone === formData.emailOrPhone && u.password === formData.password);
+            
+            console.log('=== DEBUG LOGIN ===');
+            console.log('All users in localStorage:', users);
+            console.log('Login attempt with:', {
+                emailOrPhone: formData.emailOrPhone,
+                password: formData.password
+            });
+
+            const normalizedInput = formData.emailOrPhone.trim().toLowerCase();
+            console.log('Normalized input:', normalizedInput);
+
+            // Tìm user bằng cả email hoặc số điện thoại
+            const user = users.find((u) => {
+                const storedEmailOrPhone = u.emailOrPhone.trim().toLowerCase();
+                const storedFullName = u.fullName.trim().toLowerCase();
+                
+                // So sánh với cả email/phone và fullName (nếu là email)
+                const isMatch = 
+                    storedEmailOrPhone === normalizedInput || 
+                    storedFullName === normalizedInput;
+                
+                console.log('Comparing with stored user:', {
+                    storedEmailOrPhone,
+                    storedFullName,
+                    inputValue: normalizedInput,
+                    isMatch,
+                    passwordMatch: u.password === formData.password
+                });
+
+                return isMatch && u.password === formData.password;
+            });
 
             if (user) {
-                // Save logged in user to localStorage
+                console.log('Found matching user:', user);
                 localStorage.setItem('currentUser', JSON.stringify(user));
                 toast.success('Đăng nhập thành công!', {
                     onClose: () => {
@@ -111,6 +140,7 @@ function Login() {
                     },
                 });
             } else {
+                console.log('No matching user found');
                 toast.error('Email/Số điện thoại hoặc mật khẩu không chính xác');
             }
         }

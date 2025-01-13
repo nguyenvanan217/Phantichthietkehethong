@@ -8,6 +8,9 @@
     height: 100%;
     position: relative;
 }
+.modal-content {
+    background-color: #ffffff;
+}
 .center-bottom-card {
     display: flex;
     flex-direction: column;

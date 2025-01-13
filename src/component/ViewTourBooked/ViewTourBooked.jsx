@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { HiPaperAirplane } from "react-icons/hi2";
+import { HiPaperAirplane } from 'react-icons/hi2';
 import { toast } from 'react-toastify';
 import './ViewTourBooked.css';
 import CustomNavbar from '../Navbar/CustomNavbar';
@@ -8,14 +8,23 @@ import Footer from '../Footer/Footer';
 
 function ViewTourBooked() {
     const history = useHistory();
-    const [bookedTours, setBookedTours] = useState(
-        JSON.parse(localStorage.getItem('bookedTours')) || []
-    );
+    const [bookedTours, setBookedTours] = useState(JSON.parse(localStorage.getItem('bookedTours')) || []);
 
     const handleRemoveTour = (tourIndex) => {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
         const newBookedTours = bookedTours.filter((_, index) => index !== tourIndex);
         setBookedTours(newBookedTours);
         localStorage.setItem('bookedTours', JSON.stringify(newBookedTours));
+
+        // Tạo custom event để thông báo tour đã bị xóa
+        const bookingEvent = new CustomEvent('bookingUpdated', {
+            detail: {
+                userId: currentUser.emailOrPhone,
+                action: 'remove',
+            },
+        });
+        window.dispatchEvent(bookingEvent);
+
         toast.success('Đã xóa tour khỏi giỏ hàng!');
     };
 
@@ -46,7 +55,7 @@ function ViewTourBooked() {
             <div className="booked-tours-page">
                 <div className="container py-5">
                     <h1 className="page-title">Các Tour của tôi</h1>
-                    
+
                     {bookedTours.length > 0 ? (
                         <div className="row">
                             <div className="col-lg-8">
@@ -72,20 +81,13 @@ function ViewTourBooked() {
                                             </div>
                                             <div className="price-actions">
                                                 <div className="price-info">
-                                                    
                                                     <p className="price">{tour.price}</p>
                                                 </div>
                                                 <div className="actions">
-                                                    <button 
-                                                        className="remove-button"
-                                                        onClick={() => handleRemoveTour(index)}
-                                                    >
+                                                    <button className="remove-button" onClick={() => handleRemoveTour(index)}>
                                                         Hủy Tour
                                                     </button>
-                                                    <button 
-                                                        className="buy-now-button"
-                                                        onClick={() => handleBuyNow(tour)}
-                                                    >
+                                                    <button className="buy-now-button" onClick={() => handleBuyNow(tour)}>
                                                         Mua ngay
                                                     </button>
                                                 </div>
@@ -107,10 +109,7 @@ function ViewTourBooked() {
                                             <span>{calculateTotal().toLocaleString('vi-VN')} VND</span>
                                         </div>
                                     </div>
-                                    <button 
-                                        className="checkout-button"
-                                        onClick={handleCheckout}
-                                    >
+                                    <button className="checkout-button" onClick={handleCheckout}>
                                         Thanh toán tất cả
                                         <HiPaperAirplane />
                                     </button>
@@ -119,12 +118,11 @@ function ViewTourBooked() {
                         </div>
                     ) : (
                         <div className="empty-cart">
-                            <p>Giỏ hàng của bạn đang trống</p>
-                            <button 
-                                className="continue-shopping"
-                                onClick={() => history.push('/tour-du-lich')}
-                            >
-                                Tiếp tục mua sắm
+                            <p style={{ fontSize: '20px', fontWeight: 'bold', color: '#333' }}>
+                                Hiện Bạn Chưa Đặt Tour Nào Ở Website Của Chúng Tôi
+                            </p>
+                            <button className="continue-shopping" onClick={() => history.push('/tour-du-lich')}>
+                                Tiếp tục xem Tour
                             </button>
                         </div>
                     )}

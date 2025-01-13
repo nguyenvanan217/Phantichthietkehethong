@@ -7,7 +7,7 @@ import TourDuLich from './Page/TourDuLich/TourDuLich';
 import Register from './component/Register/Register';
 import Login from './component/Login/Login';
 import ViewTourBooked from './component/ViewTourBooked/ViewTourBooked';
-
+import IconViewTourBooked from './component/IconViewTourBooked/IconViewTourBooked';
 function App() {
     return (
         <Router>
@@ -18,6 +18,7 @@ function App() {
                 <Route path="/register" component={Register} />
                 <Route path="/login" component={Login} />
             </Switch>
+            <IconViewTourBooked />
             <ToastContainer
                 position="top-right"
                 autoClose={5000}

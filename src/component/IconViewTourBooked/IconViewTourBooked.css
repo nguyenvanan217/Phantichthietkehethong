@@ -21,6 +21,43 @@
     transition: transform 0.3s ease;
 }
 
+.icon-button::before {
+    content: 'Xem tour của bạn';
+    position: absolute;
+    top: -40px;
+    right: 80%;
+    transform: translateX(50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.icon-button::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: 50%;
+    transform: translateX(50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.8) transparent transparent transparent;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.icon-button:hover::before,
+.icon-button:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
 .icon-button:hover {
     transform: translateY(-5px);
     background-color: #e58616;
@@ -44,4 +81,62 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+@keyframes shake {
+    0%,
+    100% {
+        transform: rotate(-45deg);
+    }
+    25% {
+        transform: rotate(-30deg);
+    }
+    50% {
+        transform: rotate(-60deg);
+    }
+    75% {
+        transform: rotate(-30deg);
+    }
+}
+
+.shake-animation {
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes scaleCount {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.5);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.scale-animation {
+    animation: scaleCount 0.5s ease-in-out;
+}
+
+@keyframes buttonShake {
+    0% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.1);
+    }
+    50% {
+        transform: scale(1);
+    }
+    75% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.button-shake {
+    animation: buttonShake 0.5s ease-in-out;
 }

@@ -9,7 +9,7 @@ import ListTour from '../../component/List-Tour/ListTour';
 import LayoutRight from '../../component/Layout-Right/LayoutRight';
 import Footer from '../../component/Footer/Footer';
 import { tourData, tourDataTwo,tourDataThree, tourDataFour, tourDataFive, tourDataSix, tourDataSeven, tourDataEight } from '../../Data/DataListTour';
-import IconViewTourBooked from '../../component/IconViewTourBooked/IconViewTourBooked';
+
 
 function TourDuLich() {
     return (
@@ -53,7 +53,6 @@ function TourDuLich() {
             </div>
             <LayoutRight/>
             <Footer />
-            <IconViewTourBooked />
         </>
     );
 }

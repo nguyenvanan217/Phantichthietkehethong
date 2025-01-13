@@ -32,6 +32,7 @@ function CustomNavbar() {
         localStorage.removeItem('currentUser');
         setCurrentUser(null);
         toast.success('Đăng xuất thành công!');
+        window.location.reload();
         history.push('/');
     };
 

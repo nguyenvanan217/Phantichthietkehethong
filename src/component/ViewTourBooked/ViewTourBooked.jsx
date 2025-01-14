@@ -5,12 +5,15 @@ import { toast } from 'react-toastify';
 import './ViewTourBooked.css';
 import CustomNavbar from '../Navbar/CustomNavbar';
 import Footer from '../Footer/Footer';
+import ModalPayAll from '../PayAll/ModalPayAll';
 
 function ViewTourBooked() {
     const history = useHistory();
     const [bookedTours, setBookedTours] = useState([]);
     const [currentUser, setCurrentUser] = useState(null);
     const [selectedDates, setSelectedDates] = useState({});
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
         // Scroll to top
@@ -64,11 +67,6 @@ function ViewTourBooked() {
         toast.success('Đã xóa tour khỏi giỏ hàng!');
     };
 
-    const handleBuyNow = (tour) => {
-        // Xử lý logic mua tour
-        toast.success('Đang chuyển đến trang thanh toán...');
-    };
-
     const calculateTotal = () => {
         return bookedTours.reduce((total, tour) => {
             const price = parseFloat(tour.price.replace(/[^\d]/g, ''));
@@ -81,8 +79,7 @@ function ViewTourBooked() {
             toast.error('Giỏ hàng của bạn đang trống!');
             return;
         }
-
-        toast.success('Đang chuyển đến trang thanh toán...');
+        setIsModalOpen(true);
     };
 
     const handleCancelAllTours = () => {
@@ -132,6 +129,12 @@ function ViewTourBooked() {
 
     return (
         <>
+            <ModalPayAll
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                bookedTours={bookedTours}
+                setBookedTours={setBookedTours}
+            />
             <CustomNavbar />
             <div className="booked-tours-page">
                 <div className="container py-5">
@@ -178,7 +181,6 @@ function ViewTourBooked() {
                                                     <button className="remove-button" onClick={() => handleRemoveTour(index)}>
                                                         Hủy Tour
                                                     </button>
-                                                 
                                                 </div>
                                             </div>
                                         </div>

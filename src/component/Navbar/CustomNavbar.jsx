@@ -56,6 +56,11 @@ function CustomNavbar() {
                                     <strong> Tour Du Lịch</strong>
                                 </NavLink>
                             </Nav.Link>
+                            <Nav.Link className={`text-link ml-3`}>
+                                <NavLink to="/quan-ly-thong-tin">
+                                    <strong> Hồ sơ của tôi</strong>
+                                </NavLink>
+                            </Nav.Link>
                         </Nav>
                         <Nav className="ms-lg-5 d-flex flex-row align-items-center">
                             <div className="d-flex align-items-center justify-center">

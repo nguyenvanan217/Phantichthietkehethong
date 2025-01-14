@@ -9,8 +9,6 @@ import { MdPhoneInTalk } from 'react-icons/md';
 import { ImClock } from 'react-icons/im';
 import { IoIosArrowRoundForward } from 'react-icons/io';
 import { IoLocationSharp } from 'react-icons/io5';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import './CustomNavbar.css';
 import { NavLink } from 'react-router-dom';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
@@ -35,7 +33,12 @@ function CustomNavbar() {
         window.location.reload();
         history.push('/');
     };
+    const [isLogin, setIsLogin] = useState(false);
 
+    useEffect(() => {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        setIsLogin(!!currentUser);
+    }, []);
     return (
         <div className="navbar-container">
             <Navbar expand="lg" className="back_group">
@@ -48,7 +51,7 @@ function CustomNavbar() {
                         <Nav className="me-auto d-flex align-items-center">
                             <Nav.Link className={`text-link ml-3`}>
                                 <NavLink to="/" exact>
-                                    <strong> Khách Sạn</strong>
+                                    <strong>Quảng bá hình ảnh</strong>
                                 </NavLink>
                             </Nav.Link>
                             <Nav.Link className={`text-link ml-3`}>
@@ -56,13 +59,15 @@ function CustomNavbar() {
                                     <strong> Tour Du Lịch</strong>
                                 </NavLink>
                             </Nav.Link>
-                            <Nav.Link className={`text-link ml-3`}>
-                                <NavLink to="/quan-ly-thong-tin">
-                                    <strong> Hồ sơ của tôi</strong>
-                                </NavLink>
-                            </Nav.Link>
+                            {isLogin && (
+                                <Nav.Link className={`text-link ml-3`}>
+                                    <NavLink to="/quan-ly-thong-tin">
+                                        <strong> Hồ sơ của tôi</strong>
+                                    </NavLink>
+                                </Nav.Link>
+                            )}
                         </Nav>
-                        <Nav className="ms-lg-5 d-flex flex-row align-items-center">
+                        <Nav className="ms-lg-5 d-flex align-items-center">
                             <div className="d-flex align-items-center justify-center">
                                 <NavDropdown
                                     title={
@@ -79,9 +84,7 @@ function CustomNavbar() {
                                             <NavDropdown.Item className="dropdown-item p-2">
                                                 <span className="text-gray-700">
                                                     Xin chào,{' '}
-                                                    <span className="font-bold text-blue-600">
-                                                        {currentUser.fullName}
-                                                    </span>
+                                                    <span className="font-bold text-blue-600">{currentUser.fullName}</span>
                                                 </span>
                                             </NavDropdown.Item>
                                             <NavDropdown.Divider />

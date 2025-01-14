@@ -133,7 +133,11 @@
 }
 
 .modal-footer {
-    margin-top: 20px;
+    display: flex;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center !important;
 }
 
 .rating {
@@ -146,4 +150,27 @@
 
 .evaluate {
     color: #9fc43a;
+}
+.review-tour-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: red;
+}
+.submit-rating {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2px 10px 2px 10px;
+    border-radius: 2px;
+    color: #fff;
+    background-color: #9fc43a;
+    cursor: pointer;
+}
+.rating-section {
+    margin-bottom: 20px !important;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
 }

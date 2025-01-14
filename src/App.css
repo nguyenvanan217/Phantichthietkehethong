@@ -9,6 +9,11 @@ body {
 li {
     list-style-type: none;
 }
+/* Toast styles (tùy chỉnh theo thư viện bạn sử dụng) */
+.Toastify__toast-container {
+    z-index: 999999999999999 !important; /* Đặt giá trị cao hơn overlay */
+}
+
 /* Đặt màu sắc và độ rộng cho scrollbar */
 ::-webkit-scrollbar {
     width: 12px !important; /* Chiều rộng của thanh cuộn */

@@ -9,6 +9,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import Footer from '../Footer/Footer';
 
 function Login() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+    });
     const history = useHistory();
     const [formData, setFormData] = useState({
         emailOrPhone: '',
@@ -62,88 +66,67 @@ function Login() {
     };
 
     const validateForm = () => {
-        const newFieldErrors = {
-            emailOrPhone: false,
-            password: false,
-        };
+        let isValid = true;
         const newErrors = {
             emailOrPhone: '',
             password: '',
         };
 
+        // Kiểm tra email/phone
         if (!formData.emailOrPhone) {
-            newFieldErrors.emailOrPhone = true;
             newErrors.emailOrPhone = 'Vui lòng nhập email hoặc số điện thoại';
-            toast.error('Vui lòng nhập email hoặc số điện thoại');
-            setFieldErrors(newFieldErrors);
-            setErrors(newErrors);
-            emailPhoneRef.current.focus();
-            return false;
+            isValid = false;
         }
 
+        // Kiểm tra password
         if (!formData.password) {
-            newFieldErrors.password = true;
             newErrors.password = 'Vui lòng nhập mật khẩu';
-            toast.error('Vui lòng nhập mật khẩu');
-            setFieldErrors(newFieldErrors);
-            setErrors(newErrors);
-            passwordRef.current.focus();
-            return false;
+            isValid = false;
         }
 
-        return true;
+        setErrors(newErrors);
+        return isValid;
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (validateForm()) {
-            const users = JSON.parse(localStorage.getItem('users') || '[]');
-            
-            console.log('=== DEBUG LOGIN ===');
-            console.log('All users in localStorage:', users);
-            console.log('Login attempt with:', {
-                emailOrPhone: formData.emailOrPhone,
-                password: formData.password
-            });
-
-            const normalizedInput = formData.emailOrPhone.trim().toLowerCase();
-            console.log('Normalized input:', normalizedInput);
-
-            // Tìm user bằng cả email hoặc số điện thoại
-            const user = users.find((u) => {
-                const storedEmailOrPhone = u.emailOrPhone.trim().toLowerCase();
-                const storedFullName = u.fullName.trim().toLowerCase();
-                
-                // So sánh với cả email/phone và fullName (nếu là email)
-                const isMatch = 
-                    storedEmailOrPhone === normalizedInput || 
-                    storedFullName === normalizedInput;
-                
-                console.log('Comparing with stored user:', {
-                    storedEmailOrPhone,
-                    storedFullName,
-                    inputValue: normalizedInput,
-                    isMatch,
-                    passwordMatch: u.password === formData.password
-                });
-
-                return isMatch && u.password === formData.password;
-            });
-
-            if (user) {
-                console.log('Found matching user:', user);
-                localStorage.setItem('currentUser', JSON.stringify(user));
-                toast.success('Đăng nhập thành công!', {
-                    onClose: () => {
-                        history.push('/');
-                    },
-                });
-            } else {
-                console.log('No matching user found');
-                toast.error('Email/Số điện thoại hoặc mật khẩu không chính xác');
-            }
+        if (!validateForm()) {
+            return;
         }
+
+        // Lấy danh sách tài khoản đã đăng ký
+        const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers')) || [];
+
+        // Tìm user trong danh sách đã đăng ký
+        const user = registeredUsers.find(
+            (user) => user.emailOrPhone === formData.emailOrPhone && user.password === formData.password,
+        );
+
+        if (!user) {
+            toast.error('Email/SĐT hoặc mật khẩu không chính xác!');
+            return;
+        }
+
+        // Nếu đăng nhập thành công
+        const userData = {
+            emailOrPhone: formData.emailOrPhone,
+            fullName: user.fullName, // Lấy thêm thông tin từ tài khoản đã đăng ký
+        };
+
+        localStorage.setItem('currentUser', JSON.stringify(userData));
+
+        // Kích hoạt event cập nhật số lượng tour
+        const bookingEvent = new CustomEvent('bookingUpdated', {
+            detail: {
+                userId: userData.emailOrPhone,
+                action: 'login',
+            },
+        });
+        window.dispatchEvent(bookingEvent);
+
+        toast.success('Đăng nhập thành công!');
+        history.push('/');
     };
 
     return (

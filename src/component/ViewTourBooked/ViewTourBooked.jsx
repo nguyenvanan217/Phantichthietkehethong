@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { HiPaperAirplane } from 'react-icons/hi2';
 import { toast } from 'react-toastify';
@@ -8,13 +8,49 @@ import Footer from '../Footer/Footer';
 
 function ViewTourBooked() {
     const history = useHistory();
-    const [bookedTours, setBookedTours] = useState(JSON.parse(localStorage.getItem('bookedTours')) || []);
+    const [bookedTours, setBookedTours] = useState([]);
+    const [currentUser, setCurrentUser] = useState(null);
+    const [selectedDates, setSelectedDates] = useState({});
+
+    useEffect(() => {
+        // Scroll to top
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+
+        // Lấy thông tin user hiện tại
+        const user = JSON.parse(localStorage.getItem('currentUser'));
+        if (!user) {
+            toast.error('Vui lòng đăng nhập để xem tour đã đặt!');
+            history.push('/login');
+            return;
+        }
+        setCurrentUser(user);
+
+        // Lọc tour theo user hiện tại
+        const allBookedTours = JSON.parse(localStorage.getItem('bookedTours')) || [];
+        const userTours = allBookedTours.filter((tour) => tour.userId === user.emailOrPhone);
+        setBookedTours(userTours);
+    }, [history]);
 
     const handleRemoveTour = (tourIndex) => {
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        const newBookedTours = bookedTours.filter((_, index) => index !== tourIndex);
-        setBookedTours(newBookedTours);
+        // Lấy tất cả tour
+        const allBookedTours = JSON.parse(localStorage.getItem('bookedTours')) || [];
+
+        // Lọc ra các tour của user hiện tại
+        const userTours = allBookedTours.filter((tour) => tour.userId === currentUser.emailOrPhone);
+        // Xóa tour được chọn
+        const updatedUserTours = userTours.filter((_, index) => index !== tourIndex);
+
+        // Cập nhật lại localStorage với các tour còn lại
+        const otherTours = allBookedTours.filter((tour) => tour.userId !== currentUser.emailOrPhone);
+        const newBookedTours = [...otherTours, ...updatedUserTours];
         localStorage.setItem('bookedTours', JSON.stringify(newBookedTours));
+
+        // Cập nhật state
+        setBookedTours(updatedUserTours);
 
         // Tạo custom event để thông báo tour đã bị xóa
         const bookingEvent = new CustomEvent('bookingUpdated', {
@@ -45,8 +81,53 @@ function ViewTourBooked() {
             toast.error('Giỏ hàng của bạn đang trống!');
             return;
         }
-        // Xử lý logic thanh toán tất cả
+
         toast.success('Đang chuyển đến trang thanh toán...');
+    };
+
+    const handleCancelAllTours = () => {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (!currentUser) return;
+
+        // Lấy tất cả tour
+        const allBookedTours = JSON.parse(localStorage.getItem('bookedTours')) || [];
+
+        // Lọc ra các tour không phải của user hiện tại
+        const otherTours = allBookedTours.filter((tour) => tour.userId !== currentUser.emailOrPhone);
+
+        // Cập nhật localStorage chỉ với tour của user khác
+        localStorage.setItem('bookedTours', JSON.stringify(otherTours));
+
+        // Cập nhật state
+        setBookedTours([]);
+
+        // Kích hoạt event để cập nhật số lượng tour
+        const bookingEvent = new CustomEvent('bookingUpdated', {
+            detail: {
+                userId: currentUser.emailOrPhone,
+                action: 'remove',
+            },
+        });
+        window.dispatchEvent(bookingEvent);
+
+        toast.success('Đã hủy toàn bộ tour!');
+    };
+
+    const handleDateChange = (date, tourId) => {
+        setSelectedDates((prev) => ({
+            ...prev,
+            [tourId]: date,
+        }));
+
+        // Cập nhật localStorage
+        const allBookedTours = JSON.parse(localStorage.getItem('bookedTours')) || [];
+        const updatedTours = allBookedTours.map((tour) => {
+            if (tour.userId === currentUser.emailOrPhone && tour.id === tourId) {
+                return { ...tour, selectedDate: date };
+            }
+            return tour;
+        });
+        localStorage.setItem('bookedTours', JSON.stringify(updatedTours));
     };
 
     return (
@@ -54,7 +135,7 @@ function ViewTourBooked() {
             <CustomNavbar />
             <div className="booked-tours-page">
                 <div className="container py-5">
-                    <h1 className="page-title">Các Tour của tôi</h1>
+                    <h1 className="page-title">Các Tour mà bạn {currentUser ? currentUser.fullName : ''} đã đặt:</h1>
 
                     {bookedTours.length > 0 ? (
                         <div className="row">
@@ -78,6 +159,16 @@ function ViewTourBooked() {
                                                         ))}
                                                     </ul>
                                                 </div>
+                                                <div className="tour-date-picker">
+                                                    <h4>Chọn ngày khởi hành:</h4>
+                                                    <input
+                                                        type="date"
+                                                        value={selectedDates[tour.id] || ''}
+                                                        onChange={(e) => handleDateChange(e.target.value, tour.id)}
+                                                        min={new Date().toISOString().split('T')[0]}
+                                                        className="date-input"
+                                                    />
+                                                </div>
                                             </div>
                                             <div className="price-actions">
                                                 <div className="price-info">
@@ -87,9 +178,7 @@ function ViewTourBooked() {
                                                     <button className="remove-button" onClick={() => handleRemoveTour(index)}>
                                                         Hủy Tour
                                                     </button>
-                                                    <button className="buy-now-button" onClick={() => handleBuyNow(tour)}>
-                                                        Mua ngay
-                                                    </button>
+                                                 
                                                 </div>
                                             </div>
                                         </div>
@@ -109,7 +198,18 @@ function ViewTourBooked() {
                                             <span>{calculateTotal().toLocaleString('vi-VN')} VND</span>
                                         </div>
                                     </div>
-                                    <button className="checkout-button" onClick={handleCheckout}>
+                                    <button
+                                        className="cancel-all-button"
+                                        onClick={handleCancelAllTours}
+                                        disabled={bookedTours.length === 0}
+                                    >
+                                        Hủy toàn bộ Tour
+                                    </button>
+                                    <button
+                                        className="checkout-button"
+                                        onClick={handleCheckout}
+                                        disabled={bookedTours.length === 0}
+                                    >
                                         Thanh toán tất cả
                                         <HiPaperAirplane />
                                     </button>

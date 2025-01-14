@@ -78,7 +78,7 @@ function Footer() {
                         <div className="left-content">
                             {dataFooter.travelgold.map((item, index) => (
                                 <div key={index}>
-                                    <img src={item.img} alt={item.alt} style={{ width: '110px', height: 'auto' }} />
+                                    <img src={item.img} alt={item.alt} style={{ width: '150px', height: 'auto' }} />
                                     <li>{item.content}</li>
                                 </div>
                             ))}
@@ -86,7 +86,7 @@ function Footer() {
                         <div className="center-content">
                             {dataFooter.statue.map((item, index) => (
                                 <div key={index}>
-                                    <img src={item.img} alt={item.alt} style={{ width: '50px', height: 'auto' }} />
+                                    <img src={item.img} alt={item.alt} style={{ width: '110px', height: 'auto' }} />
                                     <li>{item.content}</li>
                                 </div>
                             ))}
@@ -94,18 +94,18 @@ function Footer() {
                         <div className="right-content">
                             {dataFooter.cup.map((item, index) => (
                                 <div key={index}>
-                                    <img src={item.img} alt={item.alt} style={{ width: '30px', height: 'auto' }} />
+                                    <img src={item.img} alt={item.alt} style={{ width: '60px', height: 'auto' }} />
                                     <li>{item.content}</li>
                                 </div>
                             ))}
                         </div>
                     </div>
                     <div className="content-right">
-                        <h5>Bạn cần trợ giúp? Hãy gọi ngay!</h5>
+                        <h6>Bạn cần trợ giúp? Hãy gọi ngay!</h6>
                         <div className="hotline-phone d-flex justify-content-between">
-                            <h3>
+                            <h5>
                                 <FaPhoneAlt /> {dataFooter.support.hotline}
-                            </h3>
+                            </h5>
                             <li>{dataFooter.support.hours}</li>
                         </div>
                         <li>{dataFooter.support.chatbot}</li>
@@ -116,7 +116,7 @@ function Footer() {
                         {dataFooter.addresses.map((address, index) => (
                             <div key={index} className="addresses">
                                 <span className="icon-address">{address.icon}</span>
-                                <span>{address.text}</span>
+                                <span className="address-text">{address.text}</span>
                             </div>
                         ))}
                     </div>
@@ -161,8 +161,13 @@ function Footer() {
                     </div>
                     <div className="like-right-content">
                         {dataFooter.mail.map((item, index) => (
-                            <li key={index} style={{ color: '#818180', fontSize: '18px' }}>
-                                {item.icon} {item.text}
+                            <li
+                                className="flex gap-1 align-items-center"
+                                key={index}
+                                style={{ color: '#818180', fontSize: '18px' }}
+                            >
+                                <span className="mt-1"> {item.icon}</span>
+                                <span> {item.text}</span>
                             </li>
                         ))}
                     </div>

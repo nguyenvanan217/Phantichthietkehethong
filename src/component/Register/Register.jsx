@@ -10,7 +10,7 @@ import Footer from '../Footer/Footer';
 
 function Register() {
     const history = useHistory();
-    
+
     useEffect(() => {
         const currentUser = localStorage.getItem('currentUser');
         if (currentUser) {
@@ -18,7 +18,10 @@ function Register() {
             history.push('/');
         }
     }, [history]);
-
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+    });
     const [formData, setFormData] = useState({
         fullName: '',
         emailOrPhone: '',
@@ -168,52 +171,25 @@ function Register() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (validateForm()) {
-            // Check if user already exists
-            const existingUsers = JSON.parse(localStorage.getItem('users') || '[]');
-            
-            console.log('=== DEBUG REGISTER ===');
-            console.log('Current users:', existingUsers);
-            
-            const normalizedInput = formData.emailOrPhone.trim().toLowerCase();
-            console.log('Normalized input:', normalizedInput);
-
-            const userExists = existingUsers.some((user) => {
-                const storedValue = user.emailOrPhone.trim().toLowerCase();
-                console.log('Comparing with:', storedValue);
-                return storedValue === normalizedInput;
-            });
-
-            if (userExists) {
-                toast.error('Email hoặc số điện thoại đã được đăng ký');
-                return;
-            }
-
-            const newUser = {
-                fullName: formData.fullName.trim(),
-                emailOrPhone: normalizedInput,
-                password: formData.password,
-            };
-
-            console.log('Saving new user:', newUser);
-            existingUsers.push(newUser);
-            localStorage.setItem('users', JSON.stringify(existingUsers));
-            
-            // Log final state
-            console.log('Updated users list:', JSON.parse(localStorage.getItem('users')));
-
-            toast.success('Đăng ký thành công!', {
-                onClose: () => {
-                    setFormData({
-                        fullName: '',
-                        emailOrPhone: '',
-                        password: '',
-                        confirmPassword: '',
-                    });
-                    history.push('/login');
-                },
-            });
+        if (!validateForm()) {
+            return;
         }
+
+        // Lấy danh sách tài khoản đã đăng ký
+        const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers')) || [];
+
+        // Kiểm tra email/phone đã tồn tại chưa
+        if (registeredUsers.some((user) => user.emailOrPhone === formData.emailOrPhone)) {
+            toast.error('Email/Số điện thoại đã được đăng ký!');
+            return;
+        }
+
+        // Thêm tài khoản mới vào danh sách
+        registeredUsers.push(formData);
+        localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers));
+
+        toast.success('Đăng ký thành công! Vui lòng đăng nhập.');
+        history.push('/login');
     };
 
     return (

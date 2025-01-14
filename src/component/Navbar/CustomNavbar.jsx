@@ -74,7 +74,9 @@ function CustomNavbar() {
                                             <NavDropdown.Item className="dropdown-item p-2">
                                                 <span className="text-gray-700">
                                                     Xin chào,{' '}
-                                                    <span className="font-bold text-blue-600">{currentUser.fullName}</span>
+                                                    <span className="font-bold text-blue-600">
+                                                        {currentUser.fullName}
+                                                    </span>
                                                 </span>
                                             </NavDropdown.Item>
                                             <NavDropdown.Divider />

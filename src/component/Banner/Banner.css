@@ -54,6 +54,7 @@
 .child-input-left input {
     border: none;
     outline: none;
+    color: #333;
     height: 55px;
     width: 245px;
     padding-left: 10px;

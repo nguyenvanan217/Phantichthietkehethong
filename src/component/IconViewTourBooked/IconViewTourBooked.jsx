@@ -18,11 +18,12 @@ function IconViewTourBooked() {
 
             if (currentUser) {
                 const userTours = allBookedTours.filter((tour) => tour.userId === currentUser.emailOrPhone);
+                const previousCount = bookedToursCount;
                 const newCount = userTours.length;
 
                 // Nếu là event bookingUpdated và là user hiện tại
                 if (event.type === 'bookingUpdated' && event.detail?.userId === currentUser.emailOrPhone) {
-                    // Animation cho cả thêm và xóa tour
+                    // Animation cho icon máy bay
                     if (iconRef.current) {
                         void iconRef.current.offsetHeight;
                         iconRef.current.classList.remove('shake-animation');
@@ -31,8 +32,8 @@ function IconViewTourBooked() {
                         });
                     }
 
-                    // Animation cho số lượng
-                    if (countRef.current) {
+                    // Animation cho số lượng chỉ khi còn tour
+                    if (countRef.current && newCount > 0) {
                         void countRef.current.offsetHeight;
                         countRef.current.classList.remove('scale-animation');
                         requestAnimationFrame(() => {
@@ -51,9 +52,15 @@ function IconViewTourBooked() {
 
                     // Xóa các class animation sau khi hoàn thành
                     setTimeout(() => {
-                        if (iconRef.current) iconRef.current.classList.remove('shake-animation');
-                        if (countRef.current) countRef.current.classList.remove('scale-animation');
-                        if (buttonRef.current) buttonRef.current.classList.remove('button-shake');
+                        if (iconRef.current) {
+                            iconRef.current.classList.remove('shake-animation');
+                        }
+                        if (countRef.current && newCount > 0) {
+                            countRef.current.classList.remove('scale-animation');
+                        }
+                        if (buttonRef.current) {
+                            buttonRef.current.classList.remove('button-shake');
+                        }
                     }, 500);
                 }
 
@@ -74,7 +81,7 @@ function IconViewTourBooked() {
             window.removeEventListener('storage', updateBookedToursCount);
             window.removeEventListener('bookingUpdated', updateBookedToursCount);
         };
-    }, []);
+    }, [bookedToursCount]);
 
     const handleClick = () => {
         const currentUser = localStorage.getItem('currentUser');
@@ -83,6 +90,11 @@ function IconViewTourBooked() {
             history.push('/login');
             return;
         }
+        // Scroll to top trước khi chuyển trang
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
         history.push('/view-tour-booked');
     };
 

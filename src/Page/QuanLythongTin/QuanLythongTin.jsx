@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import CustomNavbar from '../../component/Navbar/CustomNavbar';
-import './QuanLythongTin.css';
 import Footer from '../../component/Footer/Footer';
+import './QuanLythongTin.css';
 import { FaPencilAlt } from 'react-icons/fa';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
+
 function QuanLythongTin() {
     const history = useHistory();
 
-    // Redirect to login if no user is found
+   
     useEffect(() => {
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if (!currentUser) {
@@ -19,27 +20,33 @@ function QuanLythongTin() {
     const [currentUser, setCurrentUser] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
     const [editedName, setEditedName] = useState('');
+    const [bookedTours, setBookedTours] = useState([]);
 
-    // Load user data from localStorage
+   
     useEffect(() => {
         const storedCurrentUser = JSON.parse(localStorage.getItem('currentUser'));
+        const storedBookedTours = JSON.parse(localStorage.getItem('bookedTours')) || [];
+
         setCurrentUser(storedCurrentUser);
+        setBookedTours(storedBookedTours);
     }, []);
+
     const handleEditClick2 = () => {
-        toast.error('Email/SDT chỉ quảng trị viên mới được sửa!');
+        toast.error('Email/SDT chỉ quản trị viên mới được sửa!');
     };
-    // Enable editing mode for fullName
+
+   
     const handleEditClick = () => {
         setEditedName(currentUser.fullName);
         setIsEditing(true);
     };
 
-    // Handle name input changes
+   
     const handleInputChange = (e) => {
         setEditedName(e.target.value);
     };
 
-    // Save changes and update localStorage
+   
     const handleSave = () => {
         const updatedUser = { ...currentUser, fullName: editedName };
         setCurrentUser(updatedUser);
@@ -53,6 +60,8 @@ function QuanLythongTin() {
             <CustomNavbar />
             <div className="container mt-5">
                 <h2 className="text-center mb-4">Quản Lý Thông Tin</h2>
+
+                {/* User Info Section */}
                 <div className="card p-3 mb-4">
                     <h4>Thông Tin Người Dùng:</h4>
                     {currentUser ? (
@@ -60,7 +69,12 @@ function QuanLythongTin() {
                             <div>
                                 <div className="mb-3">
                                     <label>Họ và Tên:</label>
-                                    <input type="text" value={editedName} onChange={handleInputChange} className="form-control" />
+                                    <input
+                                        type="text"
+                                        value={editedName}
+                                        onChange={handleInputChange}
+                                        className="form-control"
+                                    />
                                 </div>
                                 <button onClick={handleSave} className="btn btn-success me-2">
                                     Lưu
@@ -87,6 +101,43 @@ function QuanLythongTin() {
                         )
                     ) : (
                         <p>Không có thông tin người dùng hiện tại.</p>
+                    )}
+                </div>
+
+                {/* Booked Tours Section */}
+                <div className="card p-3 mb-4">
+                    <h4>Danh Sách Tour Đã Đặt</h4>
+                    {bookedTours.length > 0 ? (
+                        <table className="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Hình Ảnh</th>
+                                    <th>Tên Tour</th>
+                                    <th>Đánh Giá</th>
+                                    <th>Số Lượng Khách</th>
+                                    <th>Giá Gốc</th>
+                                    <th>Giá Giảm</th>
+                                    <th>Người Đặt</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {bookedTours.map((tour, index) => (
+                                    <tr key={index}>
+                                        <td>
+                                            <img src={tour.img} alt={tour.title} width="100" />
+                                        </td>
+                                        <td className='limit-text'>{tour.title}</td>
+                                        <td>{tour.rating} ({tour.Evaluate})</td>
+                                        <td>{tour.count}</td>
+                                        <td>{tour.discount}</td>
+                                        <td>{tour.price}</td>
+                                        <td>{tour.userId}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    ) : (
+                        <p>Không có tour nào đã đặt.</p>
                     )}
                 </div>
             </div>

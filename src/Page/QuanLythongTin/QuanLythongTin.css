@@ -1,0 +1,6 @@
+.limit-text {
+    max-width: 100px; /* Giới hạn chiều rộng */
+    white-space: nowrap; /* Không cho xuống dòng */
+    overflow: hidden; /* Ẩn nội dung vượt quá giới hạn */
+    text-overflow: ellipsis; /* Hiển thị dấu ba chấm nếu nội dung vượt quá */
+}

@@ -50,7 +50,7 @@ const Banner = ({
                 <div className="over-lay">
                     <div className="big-input d-flex align-items-center">
                         <span className="icon-big-input">{icon_big_input}</span>
-                        <input type="text" placeholder={placeholder} />
+                        <input type="text" placeholder={placeholder} style={{color: '#333'}}/>
                     </div>
                     <div className="child-input-btt d-flex align-items-center">
                         <div className="child-input-left d-flex align-items-center">

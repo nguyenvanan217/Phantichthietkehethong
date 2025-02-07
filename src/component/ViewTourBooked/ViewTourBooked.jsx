@@ -40,7 +40,10 @@ function ViewTourBooked() {
     const handleRemoveTour = (tourIndex) => {
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
         // Lấy tất cả tour
-        const allBookedTours = JSON.parse(localStorage.getItem('bookedTours')) || [];
+        const allBookedTours = JSON.parse(localStorage.getItem('bookedTours')) || [];     
+
+
+        
 
         // Lọc ra các tour của user hiện tại
         const userTours = allBookedTours.filter((tour) => tour.userId === currentUser.emailOrPhone);
